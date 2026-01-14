@@ -30,8 +30,8 @@ const getAllWords = (categories: Record<string, string[]>): string[] => {
   return allWords;
 };
 
-// CATEGORÍAS EN ESPAÑOL
-export const CATEGORIES_ES: Record<string, string[]> = {
+// Base categories without "All Categories"
+const BASE_CATEGORIES_ES: Record<string, string[]> = {
   'Animales': [
     'Perro', 'Gato', 'León', 'Tigre', 'Elefante', 'Jirafa', 'Mono', 'Cebra', 'Oso', 'Lobo',
     'Zorro', 'Águila', 'Delfín', 'Tiburón', 'Ballena', 'Pulpo', 'Tortuga', 'Pingüino', 'Cocodrilo', 'Serpiente',
@@ -139,8 +139,8 @@ export const CATEGORIES_ES: Record<string, string[]> = {
   ]
 };
 
-// CATEGORÍAS EN INGLÉS
-export const CATEGORIES_EN: Record<string, string[]> = {
+// Base categories in English without "All Categories"
+const BASE_CATEGORIES_EN: Record<string, string[]> = {
   'Animals': [
     'Dog', 'Cat', 'Lion', 'Tiger', 'Elephant', 'Giraffe', 'Monkey', 'Zebra', 'Bear', 'Wolf',
     'Fox', 'Eagle', 'Dolphin', 'Shark', 'Whale', 'Octopus', 'Turtle', 'Penguin', 'Crocodile', 'Snake',
@@ -248,9 +248,16 @@ export const CATEGORIES_EN: Record<string, string[]> = {
   ]
 };
 
-// Add "All Categories" with all words
-CATEGORIES_ES['Todas las Categorías'] = getAllWords(CATEGORIES_ES);
-CATEGORIES_EN['All Categories'] = getAllWords(CATEGORIES_EN);
+// Export final categories with "All Categories" included
+export const CATEGORIES_ES: Record<string, string[]> = {
+  'Todas las Categorías': getAllWords(BASE_CATEGORIES_ES),
+  ...BASE_CATEGORIES_ES
+};
+
+export const CATEGORIES_EN: Record<string, string[]> = {
+  'All Categories': getAllWords(BASE_CATEGORIES_EN),
+  ...BASE_CATEGORIES_EN
+};
 
 export const AVATARS = [
   '😎', '😊', '🤓', '😺', '🦊', '🐶', '🐼', '🦁',
